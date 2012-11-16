@@ -10,9 +10,9 @@ our @EXPORT = qw/test_schema/;
 
 sub test_schema {
     my ($value, $schema) = @_;
-    my ($ok, @errors) = ThaiSchema::match_schema($value, $schema);
+    my ($ok, $errors) = ThaiSchema::match_schema($value, $schema);
     __PACKAGE__->builder->ok($ok);
-    __PACKAGE__->builder->diag($_) for @errors;
+    __PACKAGE__->builder->diag($_) for @$errors;
     return !!$ok;
 }
 
