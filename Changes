@@ -1,4 +1,8 @@
 Revision history for Perl extension ThaiSchema
 
+0.02
+
+    - fixed documentation bug
+
 0.01    Wed Nov 14 09:30:02 2012
     - original version
