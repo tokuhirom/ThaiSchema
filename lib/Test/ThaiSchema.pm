@@ -17,4 +17,27 @@ sub test_schema {
 }
 
 1;
+__END__
+
+=head1 NOTE
+
+Test::ThaiSchema - Test with ThaiSchema
+
+=head1 SYNOPSIS
+
+    use Test::ThaiSchema;
+
+    test_schema(
+        +{ x => 3 },
+        {x => type_int},
+    );
+    done_testing;
+
+=head1 DESCRIPTION
+
+Validate schema and report it.
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
 

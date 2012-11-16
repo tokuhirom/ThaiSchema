@@ -245,15 +245,41 @@ ThaiSchema is a lightweight schema validator.
 
 =item type_int()
 
+Is it a int value?
+
 =item type_str()
 
-=item type_maybe()
+Is it a str value?
 
-=item type_hash()
+=item type_maybe($child)
+
+Is it maybe a $child value?
+
+=item type_hash(\%scheama)
+
+    type_hash(
+        {
+            x => type_str,
+            y => type_int,
+        }
+    );
+
+Is it a hash contains valid keys?
 
 =item type_array()
 
+    type_hash(
+        {
+            x => type_str,
+            y => type_int,
+        }
+    );
+
 =item type_bool()
+
+Is it a boolean value?
+
+This function allows only JSON::true, JSON::false, \1, and \0.
 
 =back
 
@@ -264,6 +290,8 @@ ThaiSchema is a lightweight schema validator.
 =item $STRICT
 
 You can check a type more strictly.
+
+This option is useful for checking JSON types.
 
 =item $ALLOW_EXTRA
 
