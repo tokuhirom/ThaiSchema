@@ -1,5 +1,9 @@
 Revision history for Perl extension ThaiSchema
 
+0.03
+
+    - bug fixed in Test::ThaiSchema. It's not works in 0.02-
+
 0.02
 
     - fixed documentation bug
