@@ -8,7 +8,7 @@ use parent qw/Exporter/;
 our $STRICT = 0;
 our $ALLOW_EXTRA = 0;
 our @ERRORS;
-our $NAMESPACE = '';
+our $NAME = '';
 
 our @EXPORT = qw/
     match_schema
@@ -23,7 +23,7 @@ use Scalar::Util qw/blessed/;
 
 sub match_schema {
     local @ERRORS;
-    local $NAMESPACE = '';
+    local $NAME = '';
     my $ok = _match_schema(@_);
     return wantarray ? ($ok, \@ERRORS) : $ok;
 }
@@ -38,7 +38,7 @@ sub _match_schema {
             return 1;
         } else {
             if ($schema->error) {
-                push @ERRORS, $NAMESPACE .' '. $schema->error();
+                push @ERRORS, $NAME .' '. $schema->error();
             }
             return 0;
         }
@@ -91,7 +91,7 @@ sub match {
     my $fail = 0;
     my %rest_keys = map { $_ => 1 } keys %$value;
     for my $key (keys %$schema) {
-        local $NAMESPACE = $NAMESPACE ? "$NAMESPACE.$key" : $key;
+        local $NAME = $NAME ? "$NAME.$key" : $key;
         if (not ThaiSchema::_match_schema($value->{$key}, $schema->{$key})) {
             $fail++;
         }
@@ -118,7 +118,7 @@ package ThaiSchema::Array {
         return 0 unless ref $value eq 'ARRAY';
         if (defined $self->[0]) {
             for (my $i=0; $i<@{$value}; $i++) {
-                local $NAMESPACE = $NAMESPACE . "[$i]";
+                local $NAME = $NAME . "[$i]";
                 my $elem = $value->[$i];
                 return 0 unless ThaiSchema::_match_schema($elem, $self->[0]);
             }
