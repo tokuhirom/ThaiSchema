@@ -155,6 +155,7 @@ package ThaiSchema::Maybe {
         return 1 unless defined $value;
         return $self->[0]->match($value);
     }
+    sub error { "is not maybe $_[0]->[0]" }
 }
 
 package ThaiSchema::Str {
@@ -174,9 +175,7 @@ package ThaiSchema::Str {
             return not ref $value;
         }
     }
-    sub error {
-        " is not str";
-    }
+    sub error { "is not str" }
 }
 
 package ThaiSchema::Int {
@@ -196,9 +195,7 @@ package ThaiSchema::Int {
             return $value =~ /^[1-9][0-9]*$/;
         }
     }
-    sub error {
-        "is not int";
-    }
+    sub error { "is not int" }
 }
 
 package ThaiSchema::Number {
@@ -219,6 +216,7 @@ package ThaiSchema::Number {
             return Scalar::Util::looks_like_number($value);
         }
     }
+    sub error { 'is not number' }
 }
 
 package ThaiSchema::Bool {
@@ -234,6 +232,7 @@ package ThaiSchema::Bool {
         return 1 if ref($value) eq 'SCALAR' && ($$value eq 1 || $$value eq 0);
         return 0;
     }
+    sub error { 'is not bool' }
 }
 
 1;
