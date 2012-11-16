@@ -32,14 +32,6 @@ sub _match_schema {
     my ($value, $schema) = @_;
     if (ref $schema eq 'HASH') {
         $schema = ThaiSchema::Hash->new($schema);
-#       my $fail = 0;
-#       my %rest_keys = map { $_ => 1 } keys %$value;
-#       for my $key (keys %$schema) {
-#           match_schema($value->{$key}, $schema->{$key}) or $fail++;
-#           delete $rest_keys{$key};
-#       }
-#       return 0 if %rest_keys; # rest keys
-#       return !$fail;
     }
     if (blessed $schema && $schema->can('match')) {
         if ($schema->match($value)) {
@@ -100,15 +92,8 @@ sub match {
     my %rest_keys = map { $_ => 1 } keys %$value;
     for my $key (keys %$schema) {
         local $NAMESPACE = $NAMESPACE ? "$NAMESPACE.$key" : $key;
-        my $cs = $schema->{$key};
-        if (ref $cs eq 'HASH') {
-            $cs = ThaiSchema::Hash->new($cs);
-        }
-        if (not $cs->match($value->{$key})) {
+        if (not ThaiSchema::_match_schema($value->{$key}, $schema->{$key})) {
             $fail++;
-            if ($cs->error) {
-                push @ERRORS, $NAMESPACE . ' ' . $cs->error();
-            }
         }
         delete $rest_keys{$key};
     }
