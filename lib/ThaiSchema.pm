@@ -231,11 +231,31 @@ ThaiSchema - Lightweight schema validator
 
 =head1 SYNOPSIS
 
-  use ThaiSchema;
+    use ThaiSchema;
+
+    match_schema({x => 3}, {x => type_int});
 
 =head1 DESCRIPTION
 
-ThaiSchema is
+ThaiSchema is a lightweight schema validator.
+
+=head1 FUNCTIONS
+
+=over 4
+
+=item type_int()
+
+=item type_str()
+
+=item type_maybe()
+
+=item type_hash()
+
+=item type_array()
+
+=item type_bool()
+
+=back
 
 =head1 OPTIONS
 
