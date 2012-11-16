@@ -268,11 +268,11 @@ Is it a hash contains valid keys?
 
 =item type_array()
 
-    type_hash(
-        {
+    type_array(
+        type_hash({
             x => type_str,
             y => type_int,
-        }
+        })
     );
 
 =item type_bool()
