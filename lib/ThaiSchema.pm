@@ -7,8 +7,8 @@ use parent qw/Exporter/;
 
 our $STRICT = 0;
 our $ALLOW_EXTRA = 0;
-our @ERRORS;
-our $NAME = '';
+our @_ERRORS;
+our $_NAME = '';
 
 our @EXPORT = qw/
     match_schema
@@ -22,10 +22,10 @@ use Data::Dumper;
 use Scalar::Util qw/blessed/;
 
 sub match_schema {
-    local @ERRORS;
-    local $NAME = '';
+    local @_ERRORS;
+    local $_NAME = '';
     my $ok = _match_schema(@_);
-    return wantarray ? ($ok, \@ERRORS) : $ok;
+    return wantarray ? ($ok, \@_ERRORS) : $ok;
 }
 
 sub _match_schema {
@@ -38,7 +38,7 @@ sub _match_schema {
             return 1;
         } else {
             if ($schema->error) {
-                push @ERRORS, $NAME .' '. $schema->error();
+                push @_ERRORS, $_NAME .' '. $schema->error();
             }
             return 0;
         }
@@ -91,14 +91,14 @@ sub match {
     my $fail = 0;
     my %rest_keys = map { $_ => 1 } keys %$value;
     for my $key (keys %$schema) {
-        local $NAME = $NAME ? "$NAME.$key" : $key;
+        local $_NAME = $_NAME ? "$_NAME.$key" : $key;
         if (not ThaiSchema::_match_schema($value->{$key}, $schema->{$key})) {
             $fail++;
         }
         delete $rest_keys{$key};
     }
     if (%rest_keys && !$ThaiSchema::ALLOW_EXTRA) {
-        push @ERRORS, 'have extra keys';
+        push @_ERRORS, 'have extra keys';
         return 0;
     }
     return !$fail;
@@ -118,7 +118,7 @@ package ThaiSchema::Array {
         return 0 unless ref $value eq 'ARRAY';
         if (defined $self->[0]) {
             for (my $i=0; $i<@{$value}; $i++) {
-                local $NAME = $NAME . "[$i]";
+                local $_NAME = $_NAME . "[$i]";
                 my $elem = $value->[$i];
                 return 0 unless ThaiSchema::_match_schema($elem, $self->[0]);
             }
@@ -227,7 +227,7 @@ __END__
 
 =head1 NAME
 
-ThaiSchema - ...
+ThaiSchema - Lightweight schema validator
 
 =head1 SYNOPSIS
 
@@ -236,6 +236,20 @@ ThaiSchema - ...
 =head1 DESCRIPTION
 
 ThaiSchema is
+
+=head1 OPTIONS
+
+=over 4
+
+=item $STRICT
+
+You can check a type more strictly.
+
+=item $ALLOW_EXTRA
+
+You can allow extra key in hashref.
+
+=back
 
 =head1 AUTHOR
 
