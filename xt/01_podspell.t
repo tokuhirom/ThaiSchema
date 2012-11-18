@@ -60,3 +60,4 @@ mysqldiff
 mmm
 JSON
 str
+validator

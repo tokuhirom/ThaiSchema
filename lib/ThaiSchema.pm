@@ -12,7 +12,7 @@ our $_NAME = '';
 
 our @EXPORT = qw/
     match_schema
-    type_int type_str type_number type_hash type_array type_maybe type_bool
+    type_int type_str type_number type_hash type_array type_maybe type_bool type_null
 /;
 
 use JSON;
@@ -75,9 +75,33 @@ sub type_bool() {
     ThaiSchema::Bool->new()
 }
 
+sub type_null() {
+    ThaiSchema::Null->new()
+}
+
+package ThaiSchema::Extra;
+# dummy object for extra key.
+use parent qw/ThaiSchema::Base/;
+
+sub is_array   { 1 }
+sub is_hash    { 1 }
+sub is_bool    { 1 }
+sub is_number  { 1 }
+sub is_integer { 1 }
+sub is_null    { 1 }
+sub is_string  { 1 }
+
+sub schema_for { undef }
+sub schema { ThaiSchema::Extra->new() }
+
 package ThaiSchema::Hash;
 
 use parent qw/ThaiSchema::Base/;
+
+sub schema_for {
+    my ($self, $key) = @_;
+    return $self->{schema}->{$key};
+}
 
 sub match {
     my ($self, $value) = @_;
@@ -105,8 +129,14 @@ sub error {
     return ();
 }
 
+sub is_hash { 1 }
+
 package ThaiSchema::Array;
 use parent qw/ThaiSchema::Base/;
+
+sub is_array { 1 }
+
+sub schema { shift->{schema} }
 
 sub match {
     my ($self, $value) = @_;
@@ -152,6 +182,7 @@ sub match {
     }
 }
 sub error { "is not str" }
+sub is_string { 1 }
 
 package ThaiSchema::Int;
 use parent qw/ThaiSchema::Base/;
@@ -168,10 +199,13 @@ sub match {
     }
 }
 sub error { "is not int" }
+sub is_number { 1 }
+sub is_integer { 1 }
 
 package ThaiSchema::Number;
 use parent qw/ThaiSchema::Base/;
 use Scalar::Util ();
+sub is_number { 1 }
 sub match {
     my ($self, $value) = @_;
     return 0 unless defined $value;
@@ -188,6 +222,7 @@ sub error { 'is not number' }
 
 package ThaiSchema::Bool;
 use parent qw/ThaiSchema::Base/;
+sub is_bool { 1 }
 use JSON;
 sub match {
     my ($self, $value) = @_;
@@ -197,6 +232,14 @@ sub match {
     return 0;
 }
 sub error { 'is not bool' }
+
+package ThaiSchema::Null;
+use parent qw/ThaiSchema::Base/;
+sub is_null { 1 }
+sub match {
+    die "Not implemented.";
+}
+sub error { 'is not null' }
 
 1;
 __END__
