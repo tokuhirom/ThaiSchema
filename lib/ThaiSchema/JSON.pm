@@ -418,3 +418,8 @@ ThaiSchema::JSON - ThaiSchema meets JSON
 
 This module validates JSON string with ThaiSchema's schema object.
 
+=head1 THANKS TO
+
+This module is based on JSON::Tiny's code. Thanks to David Oswald.
+And JSON::Tiny is based on Mojo::JSON. Thanks to Mojolicious development team.
+
