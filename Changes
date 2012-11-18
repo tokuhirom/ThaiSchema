@@ -1,5 +1,11 @@
 Revision history for Perl extension ThaiSchema
 
+0.04
+
+    - support validating json directly.
+    - fixed minimal perl version. don't use package block syntax
+      (reported by syohex++)
+
 0.03
 
     - bug fixed in Test::ThaiSchema. It's not works in 0.02-
