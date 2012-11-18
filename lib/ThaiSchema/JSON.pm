@@ -397,6 +397,10 @@ sub _exception {
 1;
 __END__
 
+=head1 NAME
+
+ThaiSchema::JSON - ThaiSchema meets JSON
+
 =head1 SYNOPSIS
 
     use ThaiSchema::JSON;
@@ -405,4 +409,12 @@ __END__
     my $schema = type_array();
     my $j = ThaiSchema::JSON->new();
     my ($ok, $errors) = $j->validate('[]', $schema);
+    print $ok ? "ok\n" : "not ok\n";
+    for (@$errors) {
+        print "$_\n";
+    }
+
+=head1 DESCRIPTION
+
+This module validates JSON string with ThaiSchema's schema object.
 
