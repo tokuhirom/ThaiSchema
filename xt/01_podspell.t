@@ -61,3 +61,5 @@ mmm
 JSON
 str
 validator
+Mojolicious
+ThaiSchema
