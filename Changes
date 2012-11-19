@@ -1,5 +1,9 @@
 Revision history for Perl extension ThaiSchema
 
+0.05
+
+    - [JSON] allow raw hashref as schema.
+
 0.04
 
     - support validating json directly.
