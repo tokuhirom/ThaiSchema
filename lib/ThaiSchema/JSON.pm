@@ -312,6 +312,7 @@ sub _decode_value {
     if (m/\G\{/gc) {
         unless ($schema->is_hash) {
             _fail('object', $schema);
+            _exception2("Hash is expected.");
         }
         return _decode_object($schema);
     }

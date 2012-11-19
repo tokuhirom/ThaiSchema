@@ -63,3 +63,4 @@ str
 validator
 Mojolicious
 ThaiSchema
+ThaiSchema's
