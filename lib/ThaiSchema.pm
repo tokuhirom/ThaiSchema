@@ -164,7 +164,18 @@ sub match {
     return 1 unless defined $value;
     return $self->{schema}->match($value);
 }
-sub error { "is not maybe $_[0]->{schema}" }
+sub error { "is not maybe " . $_[0]->{schema}->name }
+
+sub name {
+    return 'Maybe[' . $_[0]->{schema}->name .']';
+}
+
+sub is_null { 1 }
+
+for my $method (qw/is_array is_bool is_hash is_number is_integer is_string/) {
+    no strict 'refs';
+    *{__PACKAGE__ . "::$method"} = sub { $_[0]->{schema}->$method() };
+}
 
 package ThaiSchema::Str;
 use parent qw/ThaiSchema::Base/;

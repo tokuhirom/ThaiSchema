@@ -100,11 +100,24 @@ describe 'ThaiSchema::JSON#validate' => sub {
         ok validate('{"x":1}', {x => type_int});
     };
     context 'validate int' => sub {
-        it 'can detects error' => sub {
+        it 'can detects no error' => sub {
             ok validate('[5963]', type_array(type_int()));
         };
         it 'can detects error' => sub {
             ok !validate('[3.14]', type_array(type_int()));
+        };
+    };
+    context 'maybe' => sub {
+        context 'matched' => sub {
+            it 'can detects no error' => sub {
+                ok validate('{"x":4}', {x => type_maybe(type_int)});
+            };
+            it 'allows null' => sub {
+                ok validate('{"x":null}', {x => type_maybe(type_int)});
+            };
+            it 'fails on error' => sub {
+                ok !validate('{"x":"agg"}', {x => type_maybe(type_int)});
+            };
         };
     };
 };
