@@ -303,7 +303,7 @@ sub _decode_value {
     if (m/\G\[/gc) {
         unless ($schema->is_array) {
             _fail('array', $schema);
-            _exception2("Array is expected.");
+            _exception2("Unexpected array.");
         }
         return _decode_array($schema->schema);
     }
@@ -312,7 +312,7 @@ sub _decode_value {
     if (m/\G\{/gc) {
         unless ($schema->is_hash) {
             _fail('object', $schema);
-            _exception2("Hash is expected.");
+            _exception2("Unexpected hash.");
         }
         return _decode_object($schema);
     }
