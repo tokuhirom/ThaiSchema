@@ -56,6 +56,7 @@ sub error {
 
 sub validate {
     my ( $self, $bytes, $schema ) = @_;
+    $schema = _schema($schema);
 
     local $FAIL;
     local @_ERRORS;
