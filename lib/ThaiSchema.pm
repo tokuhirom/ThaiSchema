@@ -2,7 +2,7 @@ package ThaiSchema;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 use parent qw/Exporter/;
 
 our $STRICT = 0;

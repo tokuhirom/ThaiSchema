@@ -1,5 +1,9 @@
 Revision history for Perl extension ThaiSchema
 
+0.07
+
+    - bug fix: thaischema::json cannot detect missing keys
+
 0.06
 
     - fixed 'maybe' validation in JSON validation.
