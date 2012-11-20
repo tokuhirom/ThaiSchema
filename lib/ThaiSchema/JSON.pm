@@ -138,8 +138,13 @@ sub validate {
 
 sub _fail {
     my ($got, $schema) = @_;
+    _fail2(($_NAME ? "$_NAME: " : '') . $schema->name . " is expected, but $got is found");
+}
+
+sub _fail2 {
+    my ($msg) = @_;
     $FAIL++;
-    push @_ERRORS, ($_NAME ? "$_NAME: " : '') . $schema->name . " is expected, but $got is found";
+    push @_ERRORS, $msg;
 }
 
 sub false { $FALSE }
@@ -176,6 +181,7 @@ sub _decode_object {
     my $schema = _schema(shift);
 
     my %hash;
+    my %schema = %{$schema->schema};
     until (m/\G$WHITESPACE_RE\}/gc) {
 
         # Quote
@@ -191,7 +197,7 @@ sub _decode_object {
 
         # Value
         local $_NAME = $_NAME . ".$key";
-        my $cschema = $schema->schema_for($key);
+        my $cschema = delete $schema{$key};
         if ($cschema) {
             $hash{$key} = _decode_value($cschema);
         } else {
@@ -211,6 +217,10 @@ sub _decode_object {
         # Invalid character
         _exception(
             'Expected comma or right curly bracket while parsing object');
+    }
+
+    if (%schema) {
+        _fail2('There is missing keys: ' . join(', ', keys %schema));
     }
 
     return \%hash;

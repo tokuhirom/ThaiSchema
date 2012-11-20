@@ -91,16 +91,15 @@ sub is_integer { 1 }
 sub is_null    { 1 }
 sub is_string  { 1 }
 
-sub schema_for { undef }
 sub schema { ThaiSchema::Extra->new() }
 
 package ThaiSchema::Hash;
 
 use parent qw/ThaiSchema::Base/;
 
-sub schema_for {
-    my ($self, $key) = @_;
-    return $self->{schema}->{$key};
+sub schema {
+    my ($self) = @_;
+    return $self->{schema};
 }
 
 sub match {

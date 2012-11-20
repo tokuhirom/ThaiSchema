@@ -96,6 +96,9 @@ describe 'ThaiSchema::JSON#validate' => sub {
             ok !validate('{"x":1,"y":3}', type_hash({x => type_int}));
         };
     };
+    context 'missing key' => sub {
+        ok !validate('{}', type_hash({x => type_int}));
+    };
     context 'allow raw hashref' => sub {
         ok validate('{"x":1}', {x => type_int});
     };

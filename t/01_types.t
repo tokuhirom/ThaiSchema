@@ -78,6 +78,9 @@ describe 'type_hash' => sub {
         it 'can use complex data' => sub {
             ok(type_hash({x => { y => type_str}})->match({x => {y => 'fuga'}}));
         };
+        it 'can detects missing key' => sub {
+            ok(!type_hash({x => type_int})->match({}));
+        };
     };
 };
 
