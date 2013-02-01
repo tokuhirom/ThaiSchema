@@ -14,6 +14,12 @@ use Encode       ();
 my $FALSE = \0;
 my $TRUE  = \1;
 
+sub ddf {
+    require Data::Dumper;
+    local $Data::Dumper::Terse = 1;
+    Data::Dumper::Dumper(@_);
+}
+
 # Escaped special character map (with u2028 and u2029)
 my %ESCAPE = (
     '"'     => '"',
@@ -290,6 +296,11 @@ sub _schema {
     my $schema = shift;
     if (ref $schema eq 'HASH') {
         return ThaiSchema::Hash->new(schema => $schema);
+    } elsif (ref $schema eq 'ARRAY') {
+        if (@$schema > 1) {
+            Carp::confess("Invalid schema: too many elements in arrayref: " . ddf($schema));
+        }
+        return ThaiSchema::Array->new(schema => _schema($schema->[0]));
     } else {
         return $schema;
     }
