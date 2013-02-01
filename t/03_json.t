@@ -102,6 +102,12 @@ describe 'ThaiSchema::JSON#validate' => sub {
     context 'allow raw hashref' => sub {
         ok validate('{"x":1}', {x => type_int});
     };
+    context 'allow raw arrayref' => sub {
+        ok validate('{"x":[]}', {x => []});
+    };
+    context 'allow raw hashref in arrayref' => sub {
+        ok validate('{"x":[{"foo":"bar"}]}', {x => [{foo => type_str()}]});
+    };
     context 'validate int' => sub {
         it 'can detects no error' => sub {
             ok validate('[5963]', type_array(type_int()));
