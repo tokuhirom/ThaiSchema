@@ -1,5 +1,9 @@
 Revision history for Perl extension ThaiSchema
 
+0.08 2013-02-01T15:02:11
+
+    - allow raw array-ref in json schema validation.
+
 0.07
 
     - bug fix: thaischema::json cannot detect missing keys
