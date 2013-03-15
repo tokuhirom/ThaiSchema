@@ -1,6 +1,7 @@
 .travis.yml
 Build.PL
 Changes
+cpanfile
 lib/Test/ThaiSchema.pm
 lib/ThaiSchema.pm
 lib/ThaiSchema/Base.pm

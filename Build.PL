@@ -1,31 +1,21 @@
 use strict;
 use warnings;
-use Module::Build;
+use Module::Build::Pluggable qw(
+    GithubMeta
+    DistTestLibCoreOnly
+);
 
-my $build = Module::Build->new(
+my $build = Module::Build::Pluggable->new(
     license              => 'perl',
     dynamic_config       => 0,
 
-    build_requires       => {
-        'Test::More' => '0.98',
-        'Test::Requires' => 0,
-    },
-    configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
         perl => '5.010001',
-        'Exporter'                      => '0',
-        'parent'                        => '0',
-        'JSON' => 2,
-        'Scalar::Util' => 0,
-        'Test::More' => '0.98',
-        'Class::Accessor::Lite' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
     name        => 'ThaiSchema',
     module_name => 'ThaiSchema',
-
-    # script_files => [''],
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
