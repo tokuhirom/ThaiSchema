@@ -1,0 +1,77 @@
+{
+   "abstract" : "Lightweight schema validator",
+   "author" : [
+      "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "ThaiSchema",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Pod::Wordlist::hanekomu" : "0",
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spelling" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Encode" : "0",
+            "Exporter" : "0",
+            "JSON" : "2",
+            "Scalar::Util" : "0",
+            "Test::Builder::Module" : "0",
+            "Test::More" : "0.98",
+            "parent" : "0",
+            "perl" : "5.010001"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.98"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/ThaiSchema/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/ThaiSchema",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/ThaiSchema.git",
+         "web" : "https://github.com/tokuhirom/ThaiSchema"
+      }
+   },
+   "version" : "0.08",
+   "x_contributors" : [
+      "tokuhirom <tokuhirom@gmail.com>"
+   ]
+}
