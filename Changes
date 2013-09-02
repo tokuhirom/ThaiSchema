@@ -2,6 +2,10 @@ Revision history for Perl extension ThaiSchema
 
 {{$NEXT}}
 
+0.09 2013-09-02T03:22:39Z
+
+    - Oops. Older version things 0 as invalid integer in non-strict mode.
+
 0.08 2013-02-01T15:02:11
 
     - allow raw array-ref in json schema validation.

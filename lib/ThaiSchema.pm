@@ -2,7 +2,7 @@ package ThaiSchema;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 use parent qw/Exporter/;
 
 our $STRICT = 0;
@@ -274,19 +274,19 @@ ThaiSchema is a lightweight schema validator.
 
 =over 4
 
-=item type_int()
+=item C<< type_int() >>
 
 Is it a int value?
 
-=item type_str()
+=item C<< type_str() >>
 
 Is it a str value?
 
-=item type_maybe($child)
+=item C<< type_maybe($child) >>
 
 Is it maybe a $child value?
 
-=item type_hash(\%scheama)
+=item C<< type_hash(\%schema) >>
 
     type_hash(
         {
@@ -297,7 +297,7 @@ Is it maybe a $child value?
 
 Is it a hash contains valid keys?
 
-=item type_array()
+=item C<< type_array() >>
 
     type_array(
         type_hash({
@@ -306,7 +306,7 @@ Is it a hash contains valid keys?
         })
     );
 
-=item type_bool()
+=item C<< type_bool() >>
 
 Is it a boolean value?
 

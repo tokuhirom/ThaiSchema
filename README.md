@@ -14,19 +14,19 @@ ThaiSchema is a lightweight schema validator.
 
 # FUNCTIONS
 
-- type\_int()
+- `type_int()`
 
     Is it a int value?
 
-- type\_str()
+- `type_str()`
 
     Is it a str value?
 
-- type\_maybe($child)
+- `type_maybe($child)`
 
     Is it maybe a $child value?
 
-- type\_hash(\\%scheama)
+- `type_hash(\%schema)`
 
         type_hash(
             {
@@ -37,7 +37,7 @@ ThaiSchema is a lightweight schema validator.
 
     Is it a hash contains valid keys?
 
-- type\_array()
+- `type_array()`
 
         type_array(
             type_hash({
@@ -45,7 +45,7 @@ ThaiSchema is a lightweight schema validator.
                 y => type_int,
             })
         );
-- type\_bool()
+- `type_bool()`
 
     Is it a boolean value?
 
