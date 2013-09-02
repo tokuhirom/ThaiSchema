@@ -19,12 +19,14 @@ sub normal_context(&) {
 describe 'int' => sub {
     normal_context {
         ok(type_int()->match(1));
+        ok(type_int()->match(0), 'zero');
         ok(type_int()->match('1'));
         ok(!type_int()->match(3.14));
-        ok(!type_int()->match('hoge'));
+        ok(!type_int()->match('hoge'), 'hoge');
     };
     strict_context {
         ok(type_int()->match(1));
+        ok(type_int()->match(0), 'zero');
         ok(!type_int()->match(3.14));
         ok(!type_int()->match('1'));
         ok(!type_int()->match('hoge'));

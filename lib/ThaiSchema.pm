@@ -205,7 +205,7 @@ sub match {
         return 1 if $flags & ( B::SVp_IOK | B::SVp_NOK ) and int($value) == $value and !( $flags & B::SVp_POK ); # SvTYPE is IV or NV?
         return 0;
     } else {
-        return $value =~ /^[1-9][0-9]*$/;
+        return $value =~ /\A(?:[1-9][0-9]*|0)\z/;
     }
 }
 sub error { "is not int" }
@@ -310,7 +310,7 @@ Is it a hash contains valid keys?
 
 Is it a boolean value?
 
-This function allows only JSON::true, JSON::false, \1, and \0.
+This function allows only JSON::true, JSON::false, C<\1>, and C<\0>.
 
 =back
 
@@ -332,7 +332,7 @@ You can allow extra key in hashref.
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>
+Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>
 
 =head1 SEE ALSO
 

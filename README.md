@@ -49,7 +49,7 @@ ThaiSchema is a lightweight schema validator.
 
     Is it a boolean value?
 
-    This function allows only JSON::true, JSON::false, \\1, and \\0.
+    This function allows only JSON::true, JSON::false, `\1`, and `\0`.
 
 # OPTIONS
 
@@ -65,7 +65,7 @@ ThaiSchema is a lightweight schema validator.
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+Tokuhiro Matsuno <tokuhirom@gmail.com>
 
 # SEE ALSO
 
