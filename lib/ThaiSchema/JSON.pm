@@ -187,7 +187,7 @@ sub _decode_object {
     my $schema = _schema(shift);
 
     my %hash;
-    my %schema = %{$schema->schema};
+    my %schema = $schema->isa("ThaiSchema::Maybe") ? %{$schema->schema->schema} : %{$schema->schema};
     until (m/\G$WHITESPACE_RE\}/gc) {
 
         # Quote

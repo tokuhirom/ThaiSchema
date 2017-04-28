@@ -175,6 +175,10 @@ for my $method (qw/is_array is_bool is_hash is_number is_integer is_string/) {
     no strict 'refs';
     *{__PACKAGE__ . "::$method"} = sub { $_[0]->{schema}->$method() };
 }
+sub schema {
+    my ($self) = @_;
+    return $self->{schema};
+}
 
 package ThaiSchema::Str;
 use parent qw/ThaiSchema::Base/;
