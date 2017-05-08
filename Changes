@@ -2,6 +2,17 @@ Revision history for Perl module ThaiSchema
 
 {{$NEXT}}
 
+0.10 2017-05-08T01:28:43Z
+
+    commit 1ca3621b80c58ad9bd6ea63e67387bb666d3c5fa
+    Merge: 2959412 7247e2f
+    Author: Tokuhiro Matsuno <tokuhirom@gmail.com>
+    Date:   Mon May 8 10:26:11 2017 +0900
+
+        Merge pull request #4 from tokuhirom/fix-issue-3
+
+        type_maybe(type_hash) should work. close #3.
+
 0.09 2013-09-02T03:22:39Z
 
     - Oops. Older version things 0 as invalid integer in non-strict mode.

@@ -70,7 +70,7 @@
          "web" : "https://github.com/tokuhirom/ThaiSchema"
       }
    },
-   "version" : "0.09",
+   "version" : "0.10",
    "x_authority" : "cpan:TOKUHIROM",
    "x_contributors" : [
       "Neil Bowers <neil@bowers.com>"
