@@ -45,6 +45,7 @@ ThaiSchema is a lightweight schema validator.
                 y => type_int,
             })
         );
+
 - `type_bool()`
 
     Is it a boolean value?
